@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+    lb:
+        image: haproxy:1.7
+        ports:
+            - "8080:8080"
+        volumes:
+            - ./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+    nodeapp1:
+        image: nodeapp
+        environment:
+            - SERVICE_NAME=App-1
+            - SERVICE_PORT=1111
+    nodeapp2:
+        image: nodeapp
+        environment:
+            - SERVICE_NAME=App-2
+            - SERVICE_PORT=2222
+    nodeapp3:
+        image: nodeapp
+        environment:
+            - SERVICE_NAME=App-3
+            - SERVICE_PORT=3333
+    nodeapp4:
+        image: nodeapp
+        environment:
+            - SERVICE_NAME=App-4
+            - SERVICE_PORT=4444
